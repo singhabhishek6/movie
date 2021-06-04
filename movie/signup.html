@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 16px;
+           }
+        body{
+            position: relative;
+            margin: 0;
+            font-family: cursive;
+            background-image: linear-gradient(45deg, #ffd800, #ff5520, #750cf2, #0cbcf2);
+           -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        ::-webkit-scrollbar{
+            display: none;
+        }
+        .nav{
+            position: fixed;
+            width: 100%;
+            height: 60px;
+            background-color: black;
+            opacity: .7;
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 10;
+        }
+        .nav>div{
+            position: relative;
+            width: 10%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            height: 60px;
+            transition: all 300ms;
+        }
+        .nav>div:hover{
+            transition: all 300ms;
+            transform:rotate(10deg);
+        }
+        .nav>div:hover a{
+           color: tomato;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        /* sinup*/
+        #container{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 49vw;
+  padding: 20px;
+  overflow: hidden;
+}
+.box {
+  position: relative;
+}
+.form-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index:2;
+  width: 100%;
+  max-width: 300px;
+  padding: 30px 20px;
+  border: solid .5px #fff;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, .1),
+             -4px -4px 10px rgba(0, 0, 0, .1);
+  background-color: rgba(255, 255, 255, .1);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+}
+.ic-account {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3U9Rmsj0ZvB1bKWszLYufh4PK24NGD_QRkw&usqp=CAU);
+  background-position: center;
+  background-size: 68px 75px;
+  background-repeat: no-repeat;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-input {
+  outline: none;
+  width: 86%;
+  margin: 10px auto;
+  padding: 15px 20px;
+  border: 1px solid #fff;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, .1);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+}
+.form-input::placeholder {
+  color: #fff;
+}
+.product-form-btn {
+  width: 100%;
+  height: 50px;
+  margin: 20px auto 10px;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #3d3935;
+  font-size: 1.25rem;
+  outline: none;
+  cursor: pointer;
+}
+.text {
+  text-align: center;
+  font-size: 14px;
+  color: #FFF;
+  margin: 0;
+  padding: 0;
+}
+.text a {
+  color: #FFF;
+}
+.product-form-btn:hover,
+.text a:hover {
+  opacity: .8;
+}
+.circle-01 {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-image: linear-gradient(45deg, #ffd800, #ff5520);
+}
+.circle-02 {
+  position: absolute;
+  left: -40px;
+  bottom: -40px;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-image: linear-gradient(45deg, #0cbcf2, #750cf2);
+}
+@media screen and (max-width: 480px) {
+  #container {
+    height: auto;
+    align-items: flex-start;
+  }
+}
+.ani{
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="home"><a href="/home.html">Home</a></div>
+        <div class="login"><a href="/login.html">Login</a></div>
+        <div class="sinup"><a href="/signup.html">Sign Up</a></div>
+    </div>
+    
+    <div id="container">
+        <div class="box">
+          <div class="form-box">
+            <div class="ic-account"></div>
+            <form id="product-form" name="product-form" action="#">
+              <input id="name" class="form-input" type="text" placeholder="Full Name" required>
+              <input id="mobile" class="form-input" type="number" placeholder="Mo. Number" required>
+              <input id="email" class="form-input" type="email" placeholder="Email" required>
+              <input id="password" class="form-input" type="password" placeholder="Password" required>
+              <button class="product-form-btn" type="submit" onclick="store(event)">Sign Up</button>
+            </form>
+          </div>
+          <div class="circle-01"></div>
+          <div class="circle-02"></div>
+        </div>
+      </div>
+    <script>
+     
+      function store(e){
+          e.preventDefault();
+          var user = {};
+          var username = document.querySelector('#name');
+          var userMob = document.querySelector('#mobile');
+          var userEmail = document.querySelector('#email');
+          var userPass = document.querySelector('#password');
+          if(username.value != "" && userMob.value != "" && userEmail.value != '' && userPass.value != ""){
+          user.Uname = username.value; 
+          user.Umobile = userMob.value; 
+          user.uemail = userEmail.value; 
+          user.uPassword = userPass.value;
+          user.status = false;          
+          var clients = localStorage.getItem('users')
+          if(clients==null){
+              var users = [];
+          }
+          else{
+              users = JSON.parse(clients);
+          }
+          users.push(user);
+          localStorage.setItem('users',JSON.stringify(users));
+          
+                    if(username.value != "" && userMob.value != "" && userEmail.value != '' && userPass.value != ""){
+                          setTimeout(() =>{
+                               document.body.innerHTML = null
+                               document.body.style.backgroundImage = 'none'
+                  
+                              var div = document.createElement('div')
+                              div.classList.add("ani")
+                               div.innerHTML = `<img src="https://i.gifer.com/3Kxv.gif" alt="">`
+                              document.body.append(div)
+                      },200)
+                       setTimeout(() => {
+                            window.location.href = "/home.html"
+                          }, 4000);
+                      }
+                      //reset inputs
+                      username.value = "";
+                      userMob.value = "";
+                      userEmail.value = "";
+                      userPass.value = "";
+          }
+        else{
+            if(username.value == "")
+            alert("Name is empty") ;
+           else if(userMob.value == "") 
+                   alert("Number is empty");
+            else if(userEmail.value == '')
+                   alert("Email is empty") ;
+            else if(userPass.value == "")
+                  alert("Password is empty");
+        }
+    }
+
+      
+
+      
+    </script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        body{
+            margin: 0;
+            font-family: cursive;
+            background-image: linear-gradient(45deg, #ffd800, #ff5520, #750cf2, #0cbcf2);
+        }
+
+        .slider{
+    width: 80vw;
+    margin: auto;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .slides{
+    width: 500%;
+    height: 500px;
+    display: flex;
+  }
+  
+  .slides input{
+    display: none;
+  }
+  
+  .slide{
+    width: 20%;
+    transition: 2s;
+  }
+  
+  .slide img{
+    width: 80vw;
+    height: 500px;
+  }
+  
+  /*css for manual slide navigation*/
+  
+  .navigation-manual{
+    position: absolute;
+    width: 80vw;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .manual-btn{
+    border: 2px solid #40D3DC;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+  }
+  
+  .manual-btn:not(:last-child){
+    margin-right: 40px;
+  }
+  
+  .manual-btn:hover{
+    background: #40D3DC;
+  }
+  
+  #radio1:checked ~ .first{
+    margin-left: 0;
+  }
+  
+  #radio2:checked ~ .first{
+    margin-left: -20%;
+  }
+  
+
+#radio3:checked ~ .first{
+    margin-left: -40%;
+  }
+  
+  #radio4:checked ~ .first{
+    margin-left: -60%;
+  }
+  
+  /*css for automatic navigation*/
+  
+  .navigation-auto{
+    position: absolute;
+    display: flex;
+    width: 80vw;
+    justify-content: center;
+    margin-top: 460px;
+  }
+  
+  .navigation-auto div{
+    border: 2px solid #40D3DC;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+  }
+  
+  .navigation-auto div:not(:last-child){
+    margin-right: 40px;
+  }
+  
+  #radio1:checked ~ .navigation-auto .auto-btn1{
+    background: #40D3DC;
+  }
+  
+  #radio2:checked ~ .navigation-auto .auto-btn2{
+    background: #40D3DC;
+  }
+  
+  #radio3:checked ~ .navigation-auto .auto-btn3{
+    background: #40D3DC;
+  }
+  
+  #radio4:checked ~ .navigation-auto .auto-btn4{
+    background: #40D3DC;
+  }
+        /*carousel*/
+        .nav{
+            position: sticky;
+            width: 100%;
+            height: 60px;
+            background-color: black;
+            color: white;
+            opacity: .7;
+            display: flex;
+            z-index: 10;
+            justify-content: flex-end;
+            align-items: center;
+            
+        }
+        .sticky{
+           position: sticky;
+           top: 0;
+}
+        .nav div{
+            width: 10%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            height: 60px;
+            transition: all 300ms;
+        }
+        .nav div:hover{
+            transition: all 300ms;
+            transform:rotate(10deg);
+        }
+        .nav div:hover a{
+           color: tomato;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        .main-container {
+         display: none;
+         flex-wrap: wrap;
+	 margin: 50px auto;
+	 width: 80%;
+}
+ #movie-list {
+	 display: flex;
+	 flex-wrap: wrap;
+
+	 justify-content: center;
+}
+ .movie-card {
+	 border-radius: 5px;
+     background-color: transparent;
+	 box-shadow: -1px 1px 8px #828282, 1px -1px 8px #828282;
+	 margin: 40px;
+     margin-top: 10px;
+	 transition-duration: 300ms;
+   
+}
+ .movie-card img {
+	 transition-duration: 300ms;
+	 border-radius: 5px 5px 0 0;
+	 height: 400px;
+}
+ .movie-card .desc {
+	 padding: 0 1rem;
+}
+ .movie-card:hover {
+	 background-color: #bdbdbd;
+	 box-shadow: -1px 1px 10px 1px #828282, 1px -1px 10px 1px #828282;
+}
+ .movie-card:hover img {
+	 filter: brightness(50%);
+}
+.rating{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+ .x{
+     width: 50%;
+     font-size: 20px;
+     font-weight: 700;
+     color: yellow;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+ .homee.hide{
+     display: none;
+ }
+ .sho{
+   display: flex;
+   /* z-index: 100015; */
+ }
+ .homee{
+            display: flex;
+            width: 100%;
+            height: 600px;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            font-weight: 600;
+            /* background-image: linear-gradient(45deg, #ffd800, #ff5520, #750cf2, #0cbcf2); */
+        }
+        .option{
+            /* position:fixed; */
+            padding-left: 85vw;
+            padding-top: 40px;
+            width: 200px;
+            height: 100px;
+            z-index: 1000000;
+        }
+        .dot{
+            margin-left: 120px;
+            width: 80px;
+            height: 30px;
+            align-items: center;
+            display: flex;
+            flex-direction:column;
+        }
+        .dot span{
+            margin: 1px;
+           border-radius: 50%;
+            width: 10px ;
+            height: 10px ;
+            background-color: white;
+        }
+        .sort{
+            width: 100%;
+            height: 60px;
+        }
+        .sort div{
+            display: none;
+            transition: all 200ms linear;
+            margin-top: 5px;
+            background-color: rgba(255,85,32,.2);
+            border-radius: 5px;
+        }
+   .sort > div.showww{
+       display: block;
+       transition: all 400ms;
+   }
+   ::-webkit-scrollbar{
+       display: none;
+   }
+    </style>
+</head>
+<body>
+    <div class="nav sticky">
+        <div class="home"><a href="/home.html">Home</a></div>
+        <div class="login"><a href="/login.html">Login</a></div>
+        <div class="sinup"><a href="/signup.html">Sign Up</a></div>
+    </div>
+    <button style= "position: sticky; display: inline; background-color: transparent; border: none; font-family: cursive;display: flex; font-size: 15px;font-weight: 600;">Tap To See Latest Movies</button>
+    <div class="option">
+        <div class="dot">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="sort">
+            <div class="sort1" onclick="accending()">Sort by low rating to high</div>
+            <div class="sort2" onclick="decending()">Sort by High rating to low</div>
+        </div>
+    </div>
+    <span class="homee">Login to see movies</span>
+
+    
+    <div class="main-container">
+      </div>
+ 
+      <script src="/week4/day4/mov.js"></script>
+    <script>
+  var movieList = [
+      {
+          name: "The Avengers",
+          date: 2012,
+          url: "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SY1000_CR0,0,675,1000_AL_.jpg",
+          rating: 4.5
+      },
+      {
+          name: "Godzilla vs Kong",
+          date: 2021,
+          url: "https://image.tmdb.org/t/p/w300/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
+          rating: 6.5 
+      },
+      {
+          name: "Mortal Kombat",
+          date: 2021,
+          url: "https://image.tmdb.org/t/p/w300/8yhtzsbBExY8mUct2GOk4LDDuGH.jpg",
+          rating: 6.2
+      },
+      {
+          name: "The Marksman",
+          date: 2021,
+          url: "https://image.tmdb.org/t/p/w300/6vcDalR50RWa309vBH1NLmG2rjQ.jpg",
+          rating: 6.5
+      },
+      {
+          name: "Avengers:Infinity war",
+          date: 2019 ,
+          url: "https://image.tmdb.org/t/p/w300/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+          rating: 8.4
+      },
+      {
+          name: "Venom",
+          date:2018 ,
+          url: "https://image.tmdb.org/t/p/w300/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg",
+          rating: 6.7
+      },
+      {
+          name: "Wrath of Man",
+          date: 2021,
+          url: "https://image.tmdb.org/t/p/w300/YxopfHpsCV1oF8CZaL4M3Eodqa.jpg",
+          rating:7.2 
+      },
+      {
+          name: "Interstellar",
+          date: 2014,
+          url: "https://image.tmdb.org/t/p/w300/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+          rating: 8.6
+      },
+      {
+          name: "The Father",
+          date: 2020,
+          url: "https://image.tmdb.org/t/p/w300/pr3bEQ517uMb5loLvjFQi8uLAsp.jpg",
+          rating: 8.0
+      }
+  ]
+
+  var pics = [ "https://www.joblo.com/assets/images/oldsite/posters/images/full/interstellar-quad-nolan.jpg","https://i.pinimg.com/originals/a4/9d/c8/a49dc85d98d25389f9d939bbd8663e43.jpg" , "https://i1.wp.com/www.heyuguys.com/images/2015/10/star-wars-the-force-awakens-poster-landscape.jpg?fit=1536%2C864&ssl=1","https://wallpaperaccess.com/full/1076854.jpg"]
+    var counter = 1;
+   
+   document.querySelector('.dot').addEventListener('click',function(){
+   document.querySelector('.sort1').classList.toggle('showww')   
+   document.querySelector('.sort2').classList.toggle('showww')   
+   })
+   var k=1
+   document.querySelector('button').addEventListener('click',function showw(){
+
+    if(k==1){
+   var clients = localStorage.getItem('users')
+   if(clients==null){
+       alert("You need to sign in first!")
+   }
+   else{
+       clients = JSON.parse(clients);
+   }
+   var z=0;
+
+
+
+//carousel
+for(var i=0;i<clients.length;i++){
+    if(clients[i].status==true)
+    {
+        //carousel
+        var x = document.createElement('section')
+        x.innerHTML = `<!--image slider start-->
+    <div class="slider">
+      <div class="slides">
+        <!--radio buttons start-->
+        <input type="radio" name="radio-btn" id="radio1">
+        <input type="radio" name="radio-btn" id="radio2">
+        <input type="radio" name="radio-btn" id="radio3">
+        <input type="radio" name="radio-btn" id="radio4">
+        <!--radio buttons end-->
+        <!--slide images start-->
+        <div class="slide first">
+          <img src="${pics[0]}" alt="">
+        </div>
+        <div class="slide">
+          <img src="${pics[1]}" alt="">
+        </div>
+        <div class="slide">
+          <img src="${pics[2]}" alt="">
+        </div>
+        <div class="slide">
+          <img src="${pics[3]}" alt="">
+        </div>
+        <!--slide images end-->
+        <!--automatic navigation start-->
+        <div class="navigation-auto">
+          <div class="auto-btn1"></div>
+          <div class="auto-btn2"></div>
+          <div class="auto-btn3"></div>
+          <div class="auto-btn4"></div>
+        </div>
+        <!--automatic navigation end-->
+      </div>
+      <!--manual navigation start-->
+      <div class="navigation-manual">
+        <label for="radio1" class="manual-btn"></label>
+        <label for="radio2" class="manual-btn"></label>
+        <label for="radio3" class="manual-btn"></label>
+        <label for="radio4" class="manual-btn"></label>
+      </div>
+      <!--manual navigation end-->
+    </div>
+    <!--image slider end-->`
+    var option = document.querySelector('.option')
+
+       document.body.insertBefore(x,option)
+       
+     var homee = document.querySelector('.homee')
+     var movie = document.querySelector('.main-container')
+     homee.classList.add('hide')
+     movie.classList.add('sho')
+     for(var j=0;j<movieList.length;j++){
+         var div = document.createElement('div')
+         div.setAttribute('id','movie-list')
+         div.innerHTML=`<div class="movie-card">
+            <img src="${movieList[j].url}" alt="The Avengers Movie Poster">
+            <div class="desc">
+              <h3>${movieList[j].name}</h3>
+              <div class="rating">
+                  <p>${movieList[j].date}</p>
+                  <div class="x">
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAAA+CAMAAAAmsHQcAAAAdVBMVEX1xRgAAAD7yhn4xxjQpxScfg+vjBGBaAxXRQiLbw3BmxOpiBH///87LwVGOAdfTQnZrhX0wgBqVgr/0BkyKAX878n413L2yiv41WaYeg/svhe3kxLhtRZSQggWEgKighApIQQkHAN5YgwcFwMKCAFLPQdzXAtpQ7qpAAACg0lEQVRYhe2Za5eCIBCGx8F081KWtptk2v3//8RFFMHKW7l49pzeDxxgDvMgAjICnudtvn9An36+N4wJnrddrTRiAVarbc7d6qVy8taDjX4sA29ggsfNHxh0TimpaagffaRHpFKtwIutZVH34KQfNjBLJQSoKRUQ1ZjbARKzroRi0Z1EbdVLeDVK2UgcQ8pnHvCoVLiImXGvdYC5k5Mo77Ev90s0mde5BgUI1bKF6D5wDWPHSGiL0vJ9bj7uPbgGG9pRuQ4hZh8uG9pRudlduYnLBmZUrn03j1Ru+nWUBnNc7hXlNL3n+mE4+yvuOcRlIxeJnHP3XILYvX80cw1K/GYuQAMXwbRcJ8EOcgvXrC2jvtzswjNr2g5u4TqvcNcilyat4KfcossxX76XdAhXkT+cm57z9LTL07N4yUO5fAcdxo34x2LJl0okRm4w9zaYu7jl6YETF2IR9+JGlN5E/jqcOy+c5Ml6EJeto2pTXwzm+js5WrHof08uCd7gKh8iSydXWbmmRm6kHDTooPn8LvdQeQWt3Gq781ErN64chVq5lqg96eVWCynTy01EraOXS8WEDhq40v2YXMR9mYXn8zkM5VlzVG5Ju4RPuce5cuRTufswrPb2l7jlMfWKT7k1Ber316/ivPYzbQOXlL22u7mRGh+pmr/CLRfSrJu7wwZu68GugQtEOO3i2rU4dC8NcWvoIONuhXtgj1Dk2LsTM+gpN3XrcbcVnHthgVizQjGLO4O4yDNnxOWVFMiutJssLi3tQpkD3DtxSkOcIJ35aXqwg65ACYUIj2wKVfUgK1W70qbo/UPD3j9YPvrof2qq//xT3WtMdY8z1b3VZPd009xL/gJnWjLkI6hzsAAAAABJRU5ErkJggg==" alt="" style="width: 80px; height: 30px; border-radius: 90px;">
+                  ${movieList[j].rating}  
+                  </div>
+             </div>
+            </div>
+          </div>`
+        movie.append(div)
+     }
+        break;
+    }
+    else{
+        z++
+    }
+}
+if(z==clients.length){
+   alert("You need to sign in first!")
+}
+k++
+   }
+})
+
+//sort
+
+function accending(){
+    movieList.sort(function(a,b){
+        return Number(a.rating)-Number(b.rating);
+    })
+    var movie = document.querySelector('.main-container')
+    movie.innerHTML=""
+    for(var j=0;j<movieList.length;j++){
+         var div = document.createElement('div')
+         div.setAttribute('id','movie-list')
+         div.innerHTML=`<div class="movie-card">
+            <img src="${movieList[j].url}" alt="The Avengers Movie Poster">
+            <div class="desc">
+              <h3>${movieList[j].name}</h3>
+              <div class="rating">
+                  <p>${movieList[j].date}</p>
+                  <div class="x">
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAAA+CAMAAAAmsHQcAAAAdVBMVEX1xRgAAAD7yhn4xxjQpxScfg+vjBGBaAxXRQiLbw3BmxOpiBH///87LwVGOAdfTQnZrhX0wgBqVgr/0BkyKAX878n413L2yiv41WaYeg/svhe3kxLhtRZSQggWEgKighApIQQkHAN5YgwcFwMKCAFLPQdzXAtpQ7qpAAACg0lEQVRYhe2Za5eCIBCGx8F081KWtptk2v3//8RFFMHKW7l49pzeDxxgDvMgAjICnudtvn9An36+N4wJnrddrTRiAVarbc7d6qVy8taDjX4sA29ggsfNHxh0TimpaagffaRHpFKtwIutZVH34KQfNjBLJQSoKRUQ1ZjbARKzroRi0Z1EbdVLeDVK2UgcQ8pnHvCoVLiImXGvdYC5k5Mo77Ev90s0mde5BgUI1bKF6D5wDWPHSGiL0vJ9bj7uPbgGG9pRuQ4hZh8uG9pRudlduYnLBmZUrn03j1Ru+nWUBnNc7hXlNL3n+mE4+yvuOcRlIxeJnHP3XILYvX80cw1K/GYuQAMXwbRcJ8EOcgvXrC2jvtzswjNr2g5u4TqvcNcilyat4KfcossxX76XdAhXkT+cm57z9LTL07N4yUO5fAcdxo34x2LJl0okRm4w9zaYu7jl6YETF2IR9+JGlN5E/jqcOy+c5Ml6EJeto2pTXwzm+js5WrHof08uCd7gKh8iSydXWbmmRm6kHDTooPn8LvdQeQWt3Gq781ErN64chVq5lqg96eVWCynTy01EraOXS8WEDhq40v2YXMR9mYXn8zkM5VlzVG5Ju4RPuce5cuRTufswrPb2l7jlMfWKT7k1Ber316/ivPYzbQOXlL22u7mRGh+pmr/CLRfSrJu7wwZu68GugQtEOO3i2rU4dC8NcWvoIONuhXtgj1Dk2LsTM+gpN3XrcbcVnHthgVizQjGLO4O4yDNnxOWVFMiutJssLi3tQpkD3DtxSkOcIJ35aXqwg65ACYUIj2wKVfUgK1W70qbo/UPD3j9YPvrof2qq//xT3WtMdY8z1b3VZPd009xL/gJnWjLkI6hzsAAAAABJRU5ErkJggg==" alt="" style="width: 80px; height: 30px; border-radius: 90px;">
+                  ${movieList[j].rating}  
+                  </div>
+             </div>
+            </div>
+          </div>`
+        movie.append(div)
+     }
+}
+
+function decending(){
+    movieList.sort(function(a,b){
+        return Number(a.rating)-Number(b.rating);
+    })
+    var movie = document.querySelector('.main-container')
+    movie.innerHTML=""
+    for(var j=movieList.length-1;j>=0;j--){
+         var div = document.createElement('div')
+         div.setAttribute('id','movie-list')
+         div.innerHTML=`<div class="movie-card">
+            <img src="${movieList[j].url}" alt="The Avengers Movie Poster">
+            <div class="desc">
+              <h3>${movieList[j].name}</h3>
+              <div class="rating">
+                  <p>${movieList[j].date}</p>
+                  <div class="x">
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAAA+CAMAAAAmsHQcAAAAdVBMVEX1xRgAAAD7yhn4xxjQpxScfg+vjBGBaAxXRQiLbw3BmxOpiBH///87LwVGOAdfTQnZrhX0wgBqVgr/0BkyKAX878n413L2yiv41WaYeg/svhe3kxLhtRZSQggWEgKighApIQQkHAN5YgwcFwMKCAFLPQdzXAtpQ7qpAAACg0lEQVRYhe2Za5eCIBCGx8F081KWtptk2v3//8RFFMHKW7l49pzeDxxgDvMgAjICnudtvn9An36+N4wJnrddrTRiAVarbc7d6qVy8taDjX4sA29ggsfNHxh0TimpaagffaRHpFKtwIutZVH34KQfNjBLJQSoKRUQ1ZjbARKzroRi0Z1EbdVLeDVK2UgcQ8pnHvCoVLiImXGvdYC5k5Mo77Ev90s0mde5BgUI1bKF6D5wDWPHSGiL0vJ9bj7uPbgGG9pRuQ4hZh8uG9pRudlduYnLBmZUrn03j1Ru+nWUBnNc7hXlNL3n+mE4+yvuOcRlIxeJnHP3XILYvX80cw1K/GYuQAMXwbRcJ8EOcgvXrC2jvtzswjNr2g5u4TqvcNcilyat4KfcossxX76XdAhXkT+cm57z9LTL07N4yUO5fAcdxo34x2LJl0okRm4w9zaYu7jl6YETF2IR9+JGlN5E/jqcOy+c5Ml6EJeto2pTXwzm+js5WrHof08uCd7gKh8iSydXWbmmRm6kHDTooPn8LvdQeQWt3Gq781ErN64chVq5lqg96eVWCynTy01EraOXS8WEDhq40v2YXMR9mYXn8zkM5VlzVG5Ju4RPuce5cuRTufswrPb2l7jlMfWKT7k1Ber316/ivPYzbQOXlL22u7mRGh+pmr/CLRfSrJu7wwZu68GugQtEOO3i2rU4dC8NcWvoIONuhXtgj1Dk2LsTM+gpN3XrcbcVnHthgVizQjGLO4O4yDNnxOWVFMiutJssLi3tQpkD3DtxSkOcIJ35aXqwg65ACYUIj2wKVfUgK1W70qbo/UPD3j9YPvrof2qq//xT3WtMdY8z1b3VZPd009xL/gJnWjLkI6hzsAAAAABJRU5ErkJggg==" alt="" style="width: 80px; height: 30px; border-radius: 90px;">
+                  ${movieList[j].rating}  
+                  </div>
+             </div>
+            </div>
+          </div>`
+        movie.append(div)
+     }
+}
+setInterval(function(){
+      document.getElementById('radio' + counter).checked = true;
+      counter++;
+      if(counter > 4){
+        counter = 1;
+      }
+    }, 5000);
+    </script>
+</body>
+</html>
